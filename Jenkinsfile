@@ -6,19 +6,24 @@ pipeline {
         DOCKER_REGISTRY = 'csuvikg'
         DOCKER_IMAGE = 'python-cicd-test'
         DOCKER_TAG = 'latest'
-
     }
 
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                script {
+                    sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip3 install -r requirements.txt
+                    '''
+                }
             }
         }
 
         stage('Run Pytest') {
             steps {
-                sh 'python -m pytest'
+                sh 'python3 -m pytest'
             }
         }
 
