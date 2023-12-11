@@ -1,0 +1,8 @@
+# Python-related
+venv/
+__pycache__
+.pytest_cache
+
+# IDEA-related
+.idea/
+*.iml
