@@ -23,7 +23,8 @@ pipeline {
 
         stage('Run Pytest') {
             steps {
-                sh '. venv/bin/activate && pytest'
+                sh '. venv/bin/activate && pytest | tee result.log'
+                archive 'result.log'
             }
         }
 
