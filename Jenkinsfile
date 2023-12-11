@@ -23,13 +23,13 @@ pipeline {
 
         stage('Run Pytest') {
             steps {
-                sh 'python3 -m pytest'
+                sh '. venv/bin/activate && pytest'
             }
         }
 
         stage('Run Pylint') {
             steps {
-                sh "pylint --fail-under=${env.PYLINT_SCORE} app.py"
+                sh ". venv/bin/activate && pylint --fail-under=${env.PYLINT_SCORE} app.py"
             }
         }
 
