@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'docker-registry-credentials', usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASS')]) {
-                        sh "docker login ${env.DOCKER_REGISTRY} -u ${REGISTRY_USER} -p ${REGISTRY_PASS}"
+                        sh "docker login -u ${REGISTRY_USER} -p ${REGISTRY_PASS}"
                     }
 
                     sh "docker push ${env.DOCKER_REGISTRY}/${env.DOCKER_IMAGE}:${env.DOCKER_TAG}"
